@@ -19,10 +19,17 @@ body{
   border-bottom-left-radius: 50% 20%;
   border-bottom-right-radius: 50% 20%;
 }
-  
+
+/*Estilos del div contenedor de los items de compra*/
+.container-itemsShop{
+  background-color: rgb(26, 26, 94);
+  border-bottom-left-radius: 30%;
+  border-bottom-right-radius: 30%;
+  height: 50vh;
+}  
   /* Agregar estilos para las imágenes */
   .curved-container {
-    margin-top: 50px;
+    margin-top: 80px;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-gap: 20px;
@@ -31,6 +38,11 @@ body{
   
   .item-buy {
     text-align: center;
+  }
+
+  .item-buy:hover{
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   font-weight: 200;
   }
   
   .curved-image {
@@ -84,12 +96,22 @@ body{
     animation: shopAnimation 0.8s ease-out;
     opacity: 0;
   }
+  .carShop-container{
+    display: flex;
+    align-items: center;
+  }
+  #icon{
+    display: none;
+    position: fixed;
+    margin-left: 190px;
+    scale: 200%;
+    color: rgb(11, 90, 11);
+  }
 
   #carShop{
     width: 200px;
     height: 200px;
     position: relative;
-    top: 70vh;
   }
 
   /*Ajuste celulares*/
@@ -101,12 +123,13 @@ body{
     grid-template-columns: repeat(1,1fr);
     background-color: #2c3e50;
 }
-
+.carShop-container{
+  position: fixed;
+}
 #carShop{
   width: 50px;
   height: 50px;
-  position: relative;
-  top: 20vh;
+  bottom: 20px;
   margin: auto;
 }
   

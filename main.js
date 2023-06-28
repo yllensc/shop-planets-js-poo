@@ -18,6 +18,7 @@ images.forEach(function(image) {
   });
 });
 
+
 class Articulo {
   constructor(nombre, precio, descripcion) {
     this.nombre = nombre;
@@ -35,7 +36,6 @@ class Carrito {
   guardarCarrito() {
     // Convertir los datos del carrito a formato JSON
     const cartItemsJSON = JSON.stringify(this.cartItems);
-    debugger
     // Guardar los datos en el Local Storage con la clave 'carrito'
     localStorage.setItem('carrito', cartItemsJSON);
   }
@@ -58,6 +58,7 @@ class Carrito {
       this.cartItems.push(item);
     }
     this.guardarCarrito();
+      itemAdded.style.display = "block";
   }
 
   eliminarArticulo(nombre) {
@@ -77,6 +78,8 @@ class Carrito {
 
   vaciarCarrito() {
     this.cartItems = [];
+    var itemAdded = document.getElementById('icon');
+    itemAdded.style.display = "none";
     this.mostrarCarrito();
     this.guardarCarrito();
   }
@@ -134,7 +137,7 @@ class Carrito {
 
 var carrito = new Carrito();
 carrito.loadCartItems();
-
+var itemAdded = document.getElementById('icon');
 var imagenes = document.querySelectorAll('.curved-image');
 for (var i = 0; i < imagenes.length; i++) {
   imagenes[i].addEventListener('click', function() {
