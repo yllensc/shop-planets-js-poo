@@ -2,14 +2,17 @@ body{
     margin: 0;
     padding: 0;
     box-sizing:content-box;
+    background-color: black !important;
 }
 
 .title{
   background-color: rgb(58, 132, 192);
+  color: #fff;
 }
 
-.title,.curved-container{
+.curved-container{
   color: #fff;
+  text-shadow: 0px 0px 5px #fff;
 }
 
 .curved {
@@ -22,10 +25,11 @@ body{
 
 /*Estilos del div contenedor de los items de compra*/
 .container-itemsShop{
-  background-color: rgb(26, 26, 94);
+  background-image: url('images/space.jpg');
   border-bottom-left-radius: 30%;
   border-bottom-right-radius: 30%;
-  height: 50vh;
+  height: 60vh;
+  box-shadow: 0px 0px 7px #fff;
 }  
   /* Agregar estilos para las imágenes */
   .curved-container {
@@ -43,6 +47,7 @@ body{
   .item-buy:hover{
    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
    font-weight: 200;
+   color: #000;
   }
   
   .curved-image {
@@ -131,6 +136,14 @@ body{
   height: 50px;
   bottom: 20px;
   margin: auto;
+}
+
+#icon{
+  display: none;
+  position: fixed;
+  margin-left: 35px;
+  scale: 100%;
+  color: rgb(24, 124, 24);
 }
   
 }

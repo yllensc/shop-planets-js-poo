@@ -78,7 +78,6 @@ class Carrito {
 
   vaciarCarrito() {
     this.cartItems = [];
-    var itemAdded = document.getElementById('icon');
     itemAdded.style.display = "none";
     this.mostrarCarrito();
     this.guardarCarrito();
@@ -135,9 +134,13 @@ class Carrito {
     
 }
 
+
 var carrito = new Carrito();
-carrito.loadCartItems();
 var itemAdded = document.getElementById('icon');
+carrito.loadCartItems();
+if (carrito.cartItems.length>0){
+  itemAdded.style.display = "block";
+}
 var imagenes = document.querySelectorAll('.curved-image');
 for (var i = 0; i < imagenes.length; i++) {
   imagenes[i].addEventListener('click', function() {
