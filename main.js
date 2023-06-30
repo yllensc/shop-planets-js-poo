@@ -100,14 +100,14 @@ class Carrito {
       let totalItem = subtotal.toFixed(2);
   
       let rowHTML = `
-        <tr>
-          <th scope="row">${cartItem.nombre}</th>
-          <td>${cartItem.cantidad}</td>
-          <td>${subtotalItem}</td>
-          <td>${totalItem}</td>
-          <td><button class="btnEliminar">Eliminar</button></td>
-        </tr>
-      `;
+    <tr>
+      <th scope="row">${cartItem.nombre}</th>
+      <td>${cartItem.cantidad}</td>
+      <td>${subtotalItem}</td>
+      <td>${totalItem}</td>
+      <td><button class="btnEliminar" data-row-id="${i}">Eliminar</button></td>
+    </tr>
+  `;
   
       cartContainer.insertAdjacentHTML('afterbegin', rowHTML);
     }
@@ -126,9 +126,14 @@ class Carrito {
       bodyModal.appendChild(itemVaciar);
     }
   
-    let itemEliminar = document.getElementsByClassName('btnEliminar');
-    for (let i = 0; i < itemEliminar.length; i++) {
-      itemEliminar[i].addEventListener('click', () => { this.eliminarArticulo(this.cartItems[i].nombre) });
+    let btnEliminar = document.getElementsByClassName('btnEliminar');
+for (let i = 0; i < btnEliminar.length; i++) {
+  btnEliminar[i].addEventListener('click', () => {
+    let rowId = btnEliminar[i].dataset.rowId;
+    let row = btnEliminar[i].closest('tr');
+    row.remove();
+    this.eliminarArticulo(this.cartItems[rowId].nombre);
+  });
     }
   }
   
@@ -141,6 +146,7 @@ var carrito = new Carrito();
 var itemAdded = document.getElementById('icon');
 carrito.loadCartItems();
 if (carrito.cartItems.length>0){
+  debugger
   itemAdded.style.display = "block";
 }
 var imagenes = document.querySelectorAll('.curved-image');
