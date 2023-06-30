@@ -1,14 +1,14 @@
-var images = document.querySelectorAll('.curved-image');
-var shopContainer = document.querySelector('.shop-container');
+let images = document.querySelectorAll('.curved-image');
+let shopContainer = document.querySelector('.shop-container');
 
 images.forEach(function(image) {
   image.addEventListener('click', function(event) {
-    var shop = document.createElement('div');
+    let shop = document.createElement('div');
     shop.classList.add('shop');
     shopContainer.appendChild(shop);
 
-    var x = event.clientX;
-    var y = event.clientY;
+    let x = event.clientX;
+    let y = event.clientY;
     shop.style.left = x + 'px';
     shop.style.top = y + 'px';
 
@@ -50,11 +50,11 @@ class Carrito {
   }
 
   agregarAlCarrito(nombre, precio) {
-    var itemExistente = this.cartItems.find(item => item.nombre === nombre);
+    let itemExistente = this.cartItems.find(item => item.nombre === nombre);
     if (itemExistente) {
       itemExistente.cantidad++;
     } else {
-      var item = new Articulo(nombre, precio, '');
+      let item = new Articulo(nombre, precio, '');
       this.cartItems.push(item);
     }
     this.guardarCarrito();
@@ -62,9 +62,9 @@ class Carrito {
   }
 
   eliminarArticulo(nombre) {
-    var index = this.cartItems.findIndex(item => item.nombre === nombre);
+    let index = this.cartItems.findIndex(item => item.nombre === nombre);
     if (index !== -1) {
-      var item = this.cartItems[index];
+      let item = this.cartItems[index];
       item.cantidad--; 
       if (item.cantidad === 0) {
         this.cartItems.splice(index, 1); 
@@ -84,53 +84,55 @@ class Carrito {
   }
 
   mostrarCarrito() {
-      var cartContainer = document.getElementById('listaShop');
-      cartContainer.innerHTML = '';
+    let spanModal = document.getElementById('spanTotal');
+    spanModal.innerHTML = '';
+    let cartContainer = document.getElementById('tableBody');
+    cartContainer.innerHTML = '';
     
-      var totalCarrito = 0; // Variable para almacenar el total del carrito
+    let totalCarrito = 0; // Variable para almacenar el total del carrito
     
-      for (var i = 0; i < this.cartItems.length; i++) {
-        var cartItem = this.cartItems[i];
-    
-        var itemNombre = document.createElement('span');
-        itemNombre.textContent = cartItem.nombre;
-    
-        var itemPrecio = document.createElement('span');
-        itemPrecio.textContent = '$' + cartItem.precio.toFixed(2);
-    
-        var itemCantidad = document.createElement('span');
-        itemCantidad.textContent = 'Cantidad: ' + cartItem.cantidad;
-    
-        var itemTotal = document.createElement('span');
-        var subtotal = cartItem.precio * cartItem.cantidad; // Calcular subtotal del artículo
-        itemTotal.textContent = 'Total: $' + subtotal.toFixed(2);
-        totalCarrito += subtotal; // Sumar el subtotal al total del carrito
-    
-        var itemEliminar = document.createElement('button');
-        itemEliminar.classList.add("btnEliminar");
-        itemEliminar.textContent = 'Eliminar';
-        itemEliminar.addEventListener('click', () => { this.eliminarArticulo(cartItem.nombre); });
-    
-        var cartItemDiv = document.createElement('li');
-        cartItemDiv.appendChild(itemNombre);
-        cartItemDiv.appendChild(itemPrecio);
-        cartItemDiv.appendChild(itemCantidad);
-        cartItemDiv.appendChild(itemTotal);
-        cartItemDiv.appendChild(itemEliminar);
-    
-        cartContainer.appendChild(cartItemDiv);
-      }
-    
-      var itemTotalCarrito = document.createElement('span');
-      itemTotalCarrito.textContent = 'Total del carrito: $' + totalCarrito.toFixed(2);
-      cartContainer.appendChild(itemTotalCarrito);
-    
-      var itemVaciar = document.createElement('button');
-      itemVaciar.classList.add("btnVaciar");
+    for (let i = 0; i < this.cartItems.length; i++) {
+      let cartItem = this.cartItems[i];
+      let subtotal = cartItem.precio * cartItem.cantidad; // Calcular subtotal del artículo
+      totalCarrito += subtotal; // Sumar el subtotal al total del carrito
+  
+      let subtotalItem = cartItem.precio.toFixed(2);
+      let totalItem = subtotal.toFixed(2);
+  
+      let rowHTML = `
+        <tr>
+          <th scope="row">${cartItem.nombre}</th>
+          <td>${cartItem.cantidad}</td>
+          <td>${subtotalItem}</td>
+          <td>${totalItem}</td>
+          <td><button class="btnEliminar">Eliminar</button></td>
+        </tr>
+      `;
+  
+      cartContainer.insertAdjacentHTML('afterbegin', rowHTML);
+    }
+  
+    spanModal.textContent = 'Total del carrito: $ ' + totalCarrito.toFixed(2);
+  
+    let bodyModal = document.getElementById('bodyModal');
+  
+    let itemVaciar = document.getElementById('btnVaciar');
+    if (!itemVaciar) {
+      itemVaciar = document.createElement('button');
+      itemVaciar.id = 'btnVaciar';
+      itemVaciar.classList.add('btnVaciar');
       itemVaciar.textContent = 'Vaciar carrito';
       itemVaciar.addEventListener('click', () => { this.vaciarCarrito() });
-      cartContainer.appendChild(itemVaciar);
+      bodyModal.appendChild(itemVaciar);
     }
+  
+    let itemEliminar = document.getElementsByClassName('btnEliminar');
+    for (let i = 0; i < itemEliminar.length; i++) {
+      itemEliminar[i].addEventListener('click', () => { this.eliminarArticulo(this.cartItems[i].nombre) });
+    }
+  }
+  
+  
     
 }
 
@@ -142,7 +144,7 @@ if (carrito.cartItems.length>0){
   itemAdded.style.display = "block";
 }
 var imagenes = document.querySelectorAll('.curved-image');
-for (var i = 0; i < imagenes.length; i++) {
+for (let i = 0; i < imagenes.length; i++) {
   imagenes[i].addEventListener('click', function() {
     var nombre = this.parentNode.querySelector('p:first-child').textContent;
     var precio = parseFloat(this.parentNode.querySelector('p:nth-child(2)').textContent.slice(1));

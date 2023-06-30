@@ -82,13 +82,22 @@
                     <h5 class="modal-title" id="modalShopLabel">Carrito de compras</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="bodyModal">
                     <!-- Divs listar, eliminar -->
-                    <div id="divListar" class="hidden">
-                        <ul id="listaShop">
-                            <!-- Lista  -->
-                        </ul>
-                    </div>
+                    <table class="table-shop">
+                        <thead>
+                          <tr>
+                            <th scope="col">Planeta</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                          
+                        </tbody>
+                      </table>
+                      <span id="spanTotal"></span>
                 </div>
             </div>
         </div>
