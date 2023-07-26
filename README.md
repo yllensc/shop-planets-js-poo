@@ -1,2 +1,2 @@
 # shop-planets-js-poo
-Tienda de planetas jaja
+Practica como primer acercamiento a POO en JS. Tienda para compra de planetas gestionado gracias a 2 clases: class Articulo y class Carrito
